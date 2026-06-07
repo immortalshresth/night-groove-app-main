@@ -1,0 +1,153 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-purple: var(--neon-purple);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Neon Synthwave palette — dark by default */
+  --background: oklch(0.14 0.05 285);
+  --foreground: oklch(0.97 0.01 300);
+
+  --card: oklch(0.18 0.06 285);
+  --card-foreground: oklch(0.97 0.01 300);
+
+  --popover: oklch(0.18 0.06 285);
+  --popover-foreground: oklch(0.97 0.01 300);
+
+  --primary: oklch(0.72 0.30 340);            /* hot pink */
+  --primary-foreground: oklch(0.14 0.05 285);
+
+  --secondary: oklch(0.24 0.07 285);
+  --secondary-foreground: oklch(0.97 0.01 300);
+
+  --muted: oklch(0.22 0.05 285);
+  --muted-foreground: oklch(0.72 0.04 300);
+
+  --accent: oklch(0.78 0.18 200);              /* cyan */
+  --accent-foreground: oklch(0.14 0.05 285);
+
+  --destructive: oklch(0.62 0.25 25);
+  --destructive-foreground: oklch(0.97 0.01 300);
+
+  --border: oklch(0.30 0.08 285 / 60%);
+  --input: oklch(0.24 0.07 285);
+  --ring: oklch(0.72 0.30 340);
+
+  --neon-pink: oklch(0.72 0.30 340);
+  --neon-cyan: oklch(0.82 0.18 200);
+  --neon-purple: oklch(0.55 0.25 300);
+
+  --gradient-neon: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+  --gradient-bg: radial-gradient(ellipse at top left, oklch(0.22 0.12 300 / 50%), transparent 60%),
+                 radial-gradient(ellipse at bottom right, oklch(0.20 0.15 200 / 40%), transparent 60%);
+
+  --shadow-neon-pink: 0 0 20px oklch(0.72 0.30 340 / 50%), 0 0 40px oklch(0.72 0.30 340 / 30%);
+  --shadow-neon-cyan: 0 0 20px oklch(0.82 0.18 200 / 50%), 0 0 40px oklch(0.82 0.18 200 / 30%);
+
+  --sidebar: oklch(0.12 0.06 285);
+  --sidebar-foreground: oklch(0.92 0.02 300);
+  --sidebar-primary: oklch(0.72 0.30 340);
+  --sidebar-primary-foreground: oklch(0.14 0.05 285);
+  --sidebar-accent: oklch(0.20 0.07 285);
+  --sidebar-accent-foreground: oklch(0.97 0.01 300);
+  --sidebar-border: oklch(0.30 0.08 285 / 50%);
+  --sidebar-ring: oklch(0.72 0.30 340);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body, #root {
+    min-height: 100vh;
+  }
+
+  body {
+    background-color: var(--color-background);
+    background-image: var(--gradient-bg);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.30 0.08 285 / 60%);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-pink);
+  }
+}
+
+@layer utilities {
+  .text-gradient-neon {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-neon {
+    background: var(--gradient-neon);
+  }
+  .glow-pink {
+    box-shadow: var(--shadow-neon-pink);
+  }
+  .glow-cyan {
+    box-shadow: var(--shadow-neon-cyan);
+  }
+  .hover-glow-pink {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .hover-glow-pink:hover {
+    box-shadow: var(--shadow-neon-pink);
+    transform: translateY(-2px);
+  }
+}
